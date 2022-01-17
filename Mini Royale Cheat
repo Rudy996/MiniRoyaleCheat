@@ -1,0 +1,65 @@
+setTimeout(function(){a0_0x3a32cf.prototype.useNeedle = function() {
+                    this.onLeftHand = !0, this.attachmentsEntity.enabled = !1, this.leftHandWeapons.enabled = !1, this.needleEntity.enabled = !0, this.isVaccinate = 200, this.inventory.useStack("Needle", 1), setTimeout(function(a) {
+                        a.entity.sound.play("Stab-Needle")
+                    }, 1e3, this), setTimeout(function(a) {
+                        a.entity.sound.play("Breath-out"), a.needleEntity.enabled = !1, a.onLeftHand = !1, a.isVaccinate = 0;
+                        var b = 100 - a.currentHealth;
+                        0 < b && 100 > b && a.app.fire("Player:Heal", b), a.interface.showFeeling("healing", 3, 1), a.leftHandWeapons.enabled = !0, a.attachmentsEntity.enabled = !0, a.setAnimation("Takeout", 1, .2, !1, function() {})
+}, 2200, this), this.setAnimation("Left-Needle", 1, .2, !1, function() {}) }
+a0_0x3a32cf.prototype.jump = function() {
+
+        this.disablePeek(),
+            this.isCrouching = !1,
+            this.isJumping = 2,
+            this.app.tween(this.animation).to({
+                jumpAngle: -11
+            }, .15, pc.BackOut).start(),
+            this.isLanded = !1,
+            this.airTime = Date.now(),
+            this.jumpingTime = this.fullTimestamp + this.jumpDuration,
+            this.dynamicGravity = 0;
+        var t = Math.floor(this.timestamp % 2) + 1;
+        this.entity.sound.play("Jump-" + t)}
+a0_0x3a32cf.prototype.shoot = function() {
+        if (this.isShooting && this.nextShootTime < 1 && !this.isNetworkShooting && this.app.fire("Keyboard:State", "shoot", !0),
+            this.isShooting && this.nextShootTime < 0) {
+            var t = this.currentWeaponDetails,
+                e = t.recoil;
+            e *= 1, !1 === this.isFocusing ? true && "Handgun" == t.type ? this.setAnimation("Idle", 1, 0, !1, null, !0) : (console.log(2),
+                    this.shootingTime = 0) : this.currentWeaponDetails.isSniper ? e *= 1 : e *= 1,
+                this.currentWeaponDetails.isShotgun && (this.shotgunBullets = 1),
+                this.entity.sound.play("Fire-" + t.name),
+                this.nextBodyPosition.z += 0,
+                this.nextBodyRotation.x = 0,
+                this.nextBodyRotation.y = 0,
+                this.nextBodyRotation.z  = 0,
+                this.currentRecoilForce = 0
+                this.fireBullet(),
+                this.attachment.setMuzzle(),
+                this.currentBounceX = 0,
+                this.currentBounceY = 0,
+                this.lastBounceX = 0,
+                this.lastBounceY = 0,
+                this.shootRate = 6;
+            var i = this.currentDate;
+            this.lastShootTime = i,
+                true || (this.shootLock = !0),
+                this.isNetworkShooting = !0
+        }}
+const onMovementUpdateAnimation = a0_0x3a32cf.prototype.updateAnimation;
+
+const HEAD_OFFSET = 0.4;
+const RENDER_LINE_STEP = 0.001;
+const RENDER_LINE_WIDTH = 0.03;
+const RED_COLOR = new pc.Color(1, 0, 0);
+
+function renderLine(application, from, to, color) {
+  for (let i = 0; i < RENDER_LINE_WIDTH; i += RENDER_LINE_STEP) {
+    const fromOffset = new pc.Vec3(from.x + i, from.y, from.z + i);
+    const toOffset = new pc.Vec3(to.x + i, (to.y - HEAD_OFFSET), to.z + i);
+
+    application.renderLine(fromOffset, toOffset, Color);
+  }
+}},5000)
+//a0_0x185f2
+
